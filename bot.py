@@ -1,6 +1,7 @@
 import asyncio
 import logging
 import keyboards as kb
+from handlers import order
 from aiogram import Bot, Dispatcher, types, F
 from aiogram.filters.command import Command
 from aiogram.enums.parse_mode import ParseMode
@@ -14,6 +15,7 @@ logging.basicConfig(level=logging.INFO)
 bot = Bot(TOKEN_API)
 # Диспетчер
 dp = Dispatcher()
+dp.include_routers(order.router)
 
 
 # Хэндлер на команду /start
@@ -25,20 +27,18 @@ async def cmd_start(message: types.Message):
 @dp.message(F.text.lower() == "вернуться в меню")
 async def back(message: types.Message):
     await message.answer("<b>Добро пожаловать в наш бот!🤖</b>"
-                         "Здесь вы можете ознакомится с нашей техникой и оформить заказ!", reply_markup=kb.keyboard_main, parse_mode="HTML")
+                         "Здесь вы можете ознакомиться с нашей техникой и оформить заказ!", reply_markup=kb.keyboard_main, parse_mode="HTML")
 
 @dp.message(F.text.lower() == "о нас")
 async def about_us(message: types.Message):
     await message.answer("Мы отличная компания, даем технику в аренду👨‍💻!",reply_markup=kb.keyboard_back)
 
 
-#@dp.message(Command("dice"))
-#async def cmd_dice(message: types.Message, bot: Bot):
-    #await bot.send_message(-4033454240, 'Text')
 
 # Запуск процесса поллинга новых апдейтов
 async def main():
     await dp.start_polling(bot)
+
 
 if __name__ == "__main__":
     asyncio.run(main())

@@ -3,9 +3,8 @@ import logging
 import keyboards as kb
 from handlers import order
 from aiogram import Bot, Dispatcher, types, F
-from aiogram.filters.command import Command
-from aiogram.enums.parse_mode import ParseMode
-from aiogram.enums.dice_emoji import DiceEmoji
+from aiogram.filters import Command
+
 
 from config import TOKEN_API
 
@@ -22,7 +21,7 @@ dp.include_routers(order.router)
 @dp.message(Command("start", "menu"))
 async def cmd_start(message: types.Message):
     await message.answer("<b>Добро пожаловать в наш бот!🤖</b>"
-                         "Здесь вы можете ознакомится с нашей техникой и оформить заказ!", reply_markup=kb.keyboard_main, parse_mode="HTML")
+                         "Здесь вы можете ознакомиться с нашей техникой и оформить заказ!", reply_markup=kb.keyboard_main, parse_mode="HTML")
 
 @dp.message(F.text.lower() == "вернуться в меню")
 async def back(message: types.Message):

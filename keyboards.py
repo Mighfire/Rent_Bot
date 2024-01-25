@@ -1,20 +1,23 @@
-from aiogram import types
+from aiogram.types import (
+    ReplyKeyboardMarkup,
+    KeyboardButton,
+    InlineKeyboardMarkup,
+    InlineKeyboardButton
+)
 
-kb_main_menu = [
-        [types.KeyboardButton(text="О нас")],
-        [types.KeyboardButton(text="Каталог")],
-        [types.KeyboardButton(text="Оформить заказ")]
-    ]
-kb_back = [
-    [types.KeyboardButton(text="Вернуться в меню")]
-]
 
-keyboard_main = types.ReplyKeyboardMarkup(
-    keyboard=kb_main_menu,
+keyboard_main = ReplyKeyboardMarkup(
+    keyboard=[
+        [KeyboardButton(text="О нас"),
+         KeyboardButton(text="Каталог"),
+         KeyboardButton(text="Оформить заказ")]
+    ],
     resize_keyboard=True
 )
 
-keyboard_back = types.ReplyKeyboardMarkup(
-    keyboard=kb_back,
+keyboard_back = ReplyKeyboardMarkup(
+    keyboard=[
+        [KeyboardButton(text="Вернуться в меню")]
+    ],
     resize_keyboard=True
 )

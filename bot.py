@@ -1,7 +1,7 @@
 import asyncio
 import logging
 import keyboards as kb
-from handlers import order
+from handlers import order,catalog
 from aiogram import Bot, Dispatcher, types, F
 from aiogram.filters import Command
 
@@ -14,7 +14,7 @@ logging.basicConfig(level=logging.INFO)
 bot = Bot(TOKEN_API)
 # Диспетчер
 dp = Dispatcher()
-dp.include_routers(order.router)
+dp.include_routers(order.router, catalog.router)
 
 
 # Хэндлер на команду /start

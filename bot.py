@@ -1,7 +1,7 @@
 import asyncio
 import logging
 import keyboards as kb
-from handlers import order,catalog
+from handlers import order, catalog
 from aiogram import Bot, Dispatcher, types, F
 from aiogram.filters import Command
 
@@ -28,11 +28,14 @@ async def back(message: types.Message):
     await message.answer("<b>Добро пожаловать в наш бот!🤖</b>"
                          "Здесь вы можете ознакомиться с нашей техникой и оформить заказ!", reply_markup=kb.keyboard_main, parse_mode="HTML")
 
-@dp.message(F.text.lower() == "о нас")
+@dp.message(F.text.lower() == "💻о нас")
 async def about_us(message: types.Message):
     await message.answer("Мы отличная компания, даем технику в аренду👨‍💻!",reply_markup=kb.keyboard_back)
 
-
+@dp.message(F.photo)
+async def image_uploader(message: types.Message):
+    photo_data = message.photo[-1]
+    await message.answer(f"{photo_data}")
 
 # Запуск процесса поллинга новых апдейтов
 async def main():

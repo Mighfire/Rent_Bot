@@ -8,10 +8,10 @@ from keyboards import keyboard_number, keyboard_back
 router = Router()
 
 
-@router.message(F.text.lower() == "оформить заказ")
+@router.message(F.text.lower() == "✏️оформить заказ")
 async def cmd_reply(message: Message, state: FSMContext):
     await state.set_state(Form.comment)
-    await message.answer("Напишите свой запрос:Требования к оборудованию, срок аренды, пожелание по модели(если есть)")
+    await message.answer("Напишите свой запрос в свободной форме:Требования к оборудованию, срок аренды, пожелание по модели(если есть)")
 
 
 @router.message(Form.comment)

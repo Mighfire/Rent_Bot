@@ -33,11 +33,11 @@ async def form_number(message: Message, state: FSMContext, bot: Bot):
     data = await state.get_data()
     await state.clear()
 
-    #formatted_text = []
-    #[
-    #    formatted_text.append(f"{key},{value}")
-    #    for key, value in data.items()
-    #]
-    #text = '\n'.join(formatted_text)
-    await bot.send_message(-4101713526, f"@{message.from_user.username}: {data}")
+    formatted_text = []
+    [
+       formatted_text.append(f"{key}:{value}")
+       for key, value in data.items()
+    ]
+    text = '\n'.join(formatted_text)
+    await bot.send_message(-4101713526, f"@{message.from_user.username}: {text}")
     await message.answer("Спасибо, мы получили ваш запрос, ответим в ближайшее время!🙌",reply_markup=keyboard_back)

@@ -24,3 +24,8 @@ class arenda(StatesGroup):
     comment = State()
     number = State()
     question = State()
+
+class otziv(StatesGroup):
+    rating = State()
+    comment = State()
+    caption = State()

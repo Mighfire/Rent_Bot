@@ -13,7 +13,8 @@ keyboard_main = ReplyKeyboardMarkup(
         [KeyboardButton(text="💻О нас"),
          KeyboardButton(text="📖Каталог"),
          KeyboardButton(text="✏️Оформить заказ")],
-         [KeyboardButton(text="Вопрос по действующей аренде")]
+        [KeyboardButton(text="Вопрос по действующей аренде")],
+        [KeyboardButton(text="Оставить отзыв о боте")]
     ],
     resize_keyboard=True,
     one_time_keyboard=True

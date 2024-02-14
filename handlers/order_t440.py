@@ -13,7 +13,7 @@ router1 = Router()
 async def cmd_reply(message: Message, state: FSMContext):
     await state.update_data(model="#LenovoT440")
     await state.set_state(T440.dat)
-    await message.answer("Напишите даты аренды, например, 14.02 - 18.02",reply_markup=remove_keyboard)
+    await message.answer("Напишите даты аренды и количество, например, 14.02 - 18.02, 1 ноутбук",reply_markup=remove_keyboard)
 
 
 @router1.message(T440.dat)
@@ -36,5 +36,11 @@ async def form_number(message: Message, state: FSMContext, bot: Bot):
 
     data = await state.get_data()
     await state.clear()
-    await bot.send_message(-4101713526, f"@{message.from_user.username}: {data}")
+    formatted_text = []
+    [
+        formatted_text.append(f"{key}:{value}")
+        for key, value in data.items()
+    ]
+    text = '\n'.join(formatted_text)
+    await bot.send_message(-4101713526, f"@{message.from_user.username}: {text}")
     await message.answer("Спасибо, мы получили ваш запрос, ответим в ближайшее время!🙌", reply_markup=keyboard_back)
